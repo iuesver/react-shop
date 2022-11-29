@@ -1,4 +1,4 @@
-type action = {
+interface action {
   type: string;
   payload: {
     id: number;
@@ -7,15 +7,15 @@ type action = {
     image: string;
     count: number;
   };
-};
+}
 
-type item = {
+interface item {
   id: number;
   title: string;
   price: number;
   image: string;
   count: number;
-};
+}
 
 const initState: item[] = [];
 

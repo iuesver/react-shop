@@ -2,6 +2,10 @@ import { useLocation } from 'react-router';
 import tw from 'tailwind-styled-components';
 import { ChevronRightIcon } from '@heroicons/react/outline';
 
+const BreadCrumbDiv = tw.div`
+flex items-center shrink-0
+`;
+
 export default function BreadCrumb(props: any) {
   const location = useLocation();
   const path = location.pathname;
@@ -43,23 +47,20 @@ export default function BreadCrumb(props: any) {
         break;
     }
   };
-  const BreadCrumb = tw.div`
-        flex items-center shrink-0
-    `;
   return (
     <>
       {Object.keys(props).length < 1 ? (
-        <BreadCrumb>
+        <BreadCrumbDiv>
           {getCategoryName('')}
           <ChevronRightIcon className="w-3 h-3 mx-2" />
           {getCategoryName(path)}
-        </BreadCrumb>
+        </BreadCrumbDiv>
       ) : (
-        <BreadCrumb>
+        <BreadCrumbDiv>
           {getProductCategory(props.category)}
           <ChevronRightIcon className="w-3 h-3 mx-2" />
           {props.title}
-        </BreadCrumb>
+        </BreadCrumbDiv>
       )}
     </>
   );

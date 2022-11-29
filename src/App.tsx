@@ -5,10 +5,7 @@ import axios from 'axios';
 import useSWR from 'swr';
 
 import Navbar from './components/navigation/Navbar';
-import Index from './components/Index';
 import MainPage from './components/MainPage';
-import Login from './components/Login';
-import SignUp from './components/SignUp';
 import FashionPage from './components/productShow/FashionPage';
 import AccessoryPage from './components/productShow/AccessoryPage';
 import DigitalPage from './components/productShow/DigitalPage';
@@ -42,13 +39,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Navbar />}>
             <Route path="/" element={<MainPage />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/fasion" element={<FashionPage />} />
             <Route path="/accessory" element={<AccessoryPage />} />
             <Route path="/digital" element={<DigitalPage />} />
             <Route path="/:docId" element={<ProductDescription />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/signup" element={<SignUp />} />
           </Route>
         </Routes>
         <Footer />

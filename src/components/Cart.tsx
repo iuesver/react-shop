@@ -22,50 +22,56 @@ type product = {
   id: number;
   count: number;
 };
-
-export default function Cart() {
-    const calledItems = useSelector((state:any) => state.itemList);
-    const docs = calledItems.state;
-    const data : any = useSelector((state:any) => state.cart);
-    const dispatch = useDispatch();
-
-    const [cart, setCart] = useState(data);
-    const [popUp, setPopUp] = useState(false);
-  
-    const removeFromCart = (id : number) => {
-        const temp = cart.filter((product : product) => product.id !== id);
-        setCart(temp);
-    }
-    
-    const calculateTotalPrice = () : number => {
-        let total = 0;
-        const arr = docs.filter((item : item) => cart.map((product : product) => product.id).includes(item.id));
-        const arr2 = arr.map((item : item) => item.price * cart.find((product : product) => product.id === item.id).count);
-        arr2.reduce((acc : number, cur : number) => {
-            acc += cur;
-            return total = acc;
-        },0);
-        return total;
-    }
-    const Cart= tw.section`
+const CartSection = tw.section`
     flex flex-col w-full min-h-screen bg-white dark:bg-gray-800 box-border p-4 lg:flex-row justify-between
     `;
-  const CartItems = tw.section`
+const CartItems = tw.section`
     flex flex-col
     `;
-  const CartItem = tw.article`
+const CartItem = tw.article`
     flex flex-col lg:flex-row mt-4
     `;
-  const ItemInfo = tw.div`
+const ItemInfo = tw.div`
     flex flex-col justify-evenly pb-12 lg:px-12
     `;
+
+export default function Cart() {
+  const calledItems = useSelector((state: any) => state.itemList);
+  const docs = calledItems.state;
+  const data: any = useSelector((state: any) => state.cart);
+  const dispatch = useDispatch();
+
+  const [cart, setCart] = useState(data);
+  const [popUp, setPopUp] = useState(false);
+
+  const removeFromCart = (id: number) => {
+    const temp = cart.filter((product: product) => product.id !== id);
+    setCart(temp);
+  };
+
+  const calculateTotalPrice = (): number => {
+    let total = 0;
+    const arr = docs.filter((item: item) =>
+      cart.map((product: product) => product.id).includes(item.id)
+    );
+    const arr2 = arr.map(
+      (item: item) =>
+        item.price *
+        cart.find((product: product) => product.id === item.id).count
+    );
+    arr2.reduce((acc: number, cur: number) => {
+      acc += cur;
+      return (total = acc);
+    }, 0);
+    return total;
+  };
 
   return (
     <>
       <div className="p-4 bg-white dark:bg-gray-800">
         <BreadCrumb />
       </div>
-      <Cart>
+      <CartSection>
         <CartItems>
           {cart.length === 0 && <CartEmpty />}
           {cart.length !== 0 &&
@@ -162,7 +168,7 @@ export default function Cart() {
           </button>
         </div>
         {popUp && <PopUp state={popUp} func={setPopUp} />}
-      </Cart>
+      </CartSection>
     </>
   );
 }

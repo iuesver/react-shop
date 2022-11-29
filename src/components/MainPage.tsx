@@ -2,11 +2,10 @@ import Index from './Index';
 import ProductsTable from './productShow/ProductsTable';
 import tw from 'tailwind-styled-components';
 
-export default function MainPage() {
-  const Title = tw.h1`
+const Title = tw.h1`
   text-3xl font-bold p-6 text-black dark:text-white
   `;
-
+export default function MainPage() {
   return (
     <div>
       <div id="container" className="w-full">
