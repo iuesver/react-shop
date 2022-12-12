@@ -1,17 +1,20 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
 import tw from 'tailwind-styled-components';
 import useInterval from '../hooks/useInterval';
+import { PlayIcon, PauseIcon } from '@heroicons/react/outline';
 
 interface IImage {
   url: string;
   title?: string;
   description?: string;
+  category: string;
 }
 
 const delay = 5000;
 
 const SliderSection = tw.section`
-w-full relative overflow-x-hidden slidersection
+w-full max-h-96 relative overflow-x-hidden slidersection
 `;
 
 const SliderList = tw.ul` relative flex slider 
@@ -72,32 +75,39 @@ const Slider = ({ images }: { images: IImage[] }) => {
     setMoveAuto(!moveAuto);
   }, [moveAuto]);
 
-  const SliderImage = useCallback(({ url, title, description }: IImage) => {
-    return (
-      <li className="relative min-w-full">
-        <img src={url} alt={`${title}`} />
-        <div className="absolute top-[40%] left-[5%]">
-          <p className="font-bold text-6xl">{title}</p>
-          <p className="text-4xl">{description}</p>
-          <button className="btn btn-md mt-3 text-lg">
-            바로가기
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 ml-1"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-          </button>
-        </div>
-      </li>
-    );
-  }, []);
+  const SliderImage = useCallback(
+    ({ url, title, description, category }: IImage) => {
+      return (
+        <li className="relative min-w-full">
+          <img
+            src={url}
+            alt={`${title}`}
+            className="min-w-full max-h-96 object-cover"
+          />
+          <div className="absolute text-left top-[40%] left-[5%]">
+            <p className="text-grey-800 font-bold text-4xl">{title}</p>
+            <p className="text-grey-800 text-2xl">{description}</p>
+            <button className="btn btn-md mt-3 text-lg">
+              <Link to={`/${category}`}>바로가기</Link>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 ml-1"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </li>
+      );
+    },
+    []
+  );
 
   return (
     <SliderSection
@@ -114,22 +124,24 @@ const Slider = ({ images }: { images: IImage[] }) => {
             url={image.url}
             title={image.title}
             description={image.description}
+            category={image.category}
             key={index}
           />
         ))}
       </SliderList>
       <label
         htmlFor="default-toggle"
-        className="inline-flex absolute top-10 right-10 items-center cursor-pointer "
+        className="inline-flex absolute swap top-10 right-10 items-center cursor-pointer "
       >
         <input
           type="checkbox"
           checked={moveAuto}
           id="default-toggle"
-          className="sr-only peer"
+          className=""
           onChange={handleCheck}
         />
-        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+        <PlayIcon className="swap-off absolute right-4 text-white w-11 h-11" />
+        <PauseIcon className="swap-on absolute right-4 text-blue-500 w-11 h-11" />
       </label>
       <PrevBtn
         onClick={() => {

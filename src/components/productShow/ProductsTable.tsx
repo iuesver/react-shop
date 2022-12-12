@@ -1,7 +1,5 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import tw from 'tailwind-styled-components';
-// import { filteritem } from '../actions';
 
 export default function ProductsTable(props: any) {
   const { category, catego } = props;
@@ -44,7 +42,7 @@ export default function ProductsTable(props: any) {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-4 px-2 pb-20">
       {filtering(category, catego).map((doc: any) => (
-        <div key={doc.id} className="mx-2 border dark:border-none rounded-lg">
+        <div key={doc.id} className="m-4 border dark:border-none rounded-lg">
           <Link to={`/${doc.id}`}>
             <figure className="h-80 bg-white flex justify-center items-center rounded-t-lg">
               <img src={doc.image} className="img-primary" alt={doc.title} />

@@ -3,7 +3,6 @@ import tw from 'tailwind-styled-components';
 
 export default function Skel_Item(props: any) {
   const { skelForm } = props;
-  console.log(skelForm);
   const sample = [1, 2, 3, 4];
   const Product = tw.div`
   flex flex-col min-h-screen lg:flex-row px-10 pt-16 bg-white dark:bg-gray-800

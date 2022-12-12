@@ -22,7 +22,6 @@ function App() {
   async function fetcher(url: string) {
     const result = await axios.get(url);
 
-    // console.log(result.data);
     return result.data;
   }
   const { data: docs, error } = useSWR('post', () => fetcher(productListApi));
@@ -39,7 +38,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navbar />}>
             <Route path="/" element={<MainPage />} />
-            <Route path="/fasion" element={<FashionPage />} />
+            <Route path="/fashion" element={<FashionPage />} />
             <Route path="/accessory" element={<AccessoryPage />} />
             <Route path="/digital" element={<DigitalPage />} />
             <Route path="/:docId" element={<ProductDescription />} />

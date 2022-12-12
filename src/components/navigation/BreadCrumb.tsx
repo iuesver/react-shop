@@ -11,7 +11,7 @@ export default function BreadCrumb(props: any) {
   const path = location.pathname;
   const getCategoryName = (name: string) => {
     switch (name) {
-      case '/fasion':
+      case '/fashion':
         return '패션';
         break;
       case '/accessory':

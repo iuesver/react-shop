@@ -110,7 +110,7 @@ export default function Navbar() {
           <Link to="/">
             <HomeBtn>React Shop</HomeBtn>
           </Link>
-          <Link to="/fasion">
+          <Link to="/fashion">
             <NavBtn>패션</NavBtn>
           </Link>
           <Link to="/accessory">

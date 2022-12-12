@@ -72,7 +72,7 @@ export default function SearchBar() {
           setIndex(-1);
           navigate(`/${keyItems[index].id}`);
           break;
-        case Escape: // esc key를 눌렀을때,
+        case Escape:
           console.log(index);
           setKeyItems([]);
           setIndex(-1);
