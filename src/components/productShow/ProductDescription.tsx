@@ -42,7 +42,7 @@ export default function ProductDescription() {
           />
         </figure>
         <div className="w-full lg:px-8 flex flex-col">
-          <h1 className="lg:pb-4 text-2xl font-bold text-black dark:text-gray-400">
+          <h1 className="pt-4 lg:pb-4 text-2xl font-bold text-black dark:text-gray-400">
             {selectedItem.title}
           </h1>
           <p className="py-4 lg:py-0 text-black dark:text-gray-400">
@@ -54,7 +54,7 @@ export default function ProductDescription() {
           <p className="text-xl font-semibold py-4 lg:py-0 text-black dark:text-gray-400">
             ${selectedItem.price}
           </p>
-          <div className="py-0 lg:py-4">
+          <div className="py-4">
             <button
               className="btn-primary mr-4"
               onClick={() =>

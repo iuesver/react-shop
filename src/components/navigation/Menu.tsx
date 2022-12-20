@@ -6,25 +6,45 @@ w-screen h-screen flex flex-col justify-evenly items-center fixed -mt-2 -ml-2 bg
 `;
 const MenuSpan = tw.span`
 text-2xl text-black dark:text-white
-`
-export default function Menu(props : any) {
-    return(
-        <MenuDiv onClick={() => {
+`;
+export default function Menu(props: any) {
+  return (
+    <MenuDiv
+      onClick={() => {
+        props.setMenu(!props.menu);
+        props.setClicked(!props.clicked);
+      }}
+    >
+      <Link to="/fashion">
+        <MenuSpan
+          onClick={() => {
             props.setMenu(!props.menu);
             props.setClicked(!props.clicked);
-        }}>
-            <Link to="/fasion"><MenuSpan onClick={() => {
-                props.setMenu(!props.menu);
-                props.setClicked(!props.clicked);
-                }}>패션</MenuSpan></Link>
-            <Link to="/accessory"><MenuSpan onClick={() => {
-                props.setMenu(!props.menu);
-                props.setClicked(!props.clicked);
-                }}>악세서리</MenuSpan></Link>
-            <Link to="/digital"><MenuSpan onClick={() => {
-                props.setMenu(!props.menu);
-                props.setClicked(!props.clicked);
-                }}>디지털</MenuSpan></Link>
-        </MenuDiv>
-    )
+          }}
+        >
+          패션
+        </MenuSpan>
+      </Link>
+      <Link to="/accessory">
+        <MenuSpan
+          onClick={() => {
+            props.setMenu(!props.menu);
+            props.setClicked(!props.clicked);
+          }}
+        >
+          악세서리
+        </MenuSpan>
+      </Link>
+      <Link to="/digital">
+        <MenuSpan
+          onClick={() => {
+            props.setMenu(!props.menu);
+            props.setClicked(!props.clicked);
+          }}
+        >
+          디지털
+        </MenuSpan>
+      </Link>
+    </MenuDiv>
+  );
 }

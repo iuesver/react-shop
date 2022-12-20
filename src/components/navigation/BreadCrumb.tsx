@@ -57,9 +57,9 @@ export default function BreadCrumb(props: any) {
         </BreadCrumbDiv>
       ) : (
         <BreadCrumbDiv>
-          {getProductCategory(props.category)}
+          <span className="shrink-0">{getProductCategory(props.category)}</span>
           <ChevronRightIcon className="w-3 h-3 mx-2" />
-          {props.title}
+          <span>{props.title}</span>
         </BreadCrumbDiv>
       )}
     </>
