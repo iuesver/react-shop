@@ -6,7 +6,10 @@ const BreadCrumbDiv = tw.div`
 flex items-center shrink-0
 `;
 
-export default function BreadCrumb(props: any) {
+export default function BreadCrumb(props: {
+  category?: string;
+  title?: string;
+}) {
   const location = useLocation();
   const path = location.pathname;
   const getCategoryName = (name: string) => {
@@ -29,7 +32,7 @@ export default function BreadCrumb(props: any) {
     }
   };
 
-  const getProductCategory = (name: string) => {
+  const getProductCategory = (name?: string) => {
     switch (name) {
       case "men's clothing":
         return '패션';

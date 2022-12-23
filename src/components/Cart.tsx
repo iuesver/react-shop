@@ -31,14 +31,37 @@ const CartItems = tw.section`
 const CartItem = tw.article`
     flex flex-col lg:flex-row mt-4
     `;
+const ItemTitle = tw.h2`
+    text-xl text-black dark:text-gray-400 font-semibold hover:underline underline-offset-2
+`;
+const ItemPrice = tw.p`
+    text-3xl my-4 text-black dark:text-gray-400
+`;
 const ItemInfo = tw.div`
     flex flex-col justify-evenly pb-12 lg:px-12
     `;
-
+const ItemCount = tw.span`
+    mx-4 text-black dark:text-gray-400
+`;
+const ItemRemoveBtn = tw.button`
+    bg-violet-700 rounded-l-lg px-4 h-12 text-white font-semibold hover:bg-violet-800
+`;
+const ItemAddBtn = tw.button`
+    bg-violet-700 rounded-r-lg px-4 h-12 text-white font-semibold hover:bg-violet-800
+`;
+const BuyBtnLabel = tw.label`
+    text-2xl lg:text-xl text-center text-black dark:text-gray-400
+`;
+const BuyBtnDiv = tw.div`
+    flex items-center mt-10 w-72 h-fit
+`;
+const BreadCrumbDiv = tw.div`
+    p-4 bg-white dark:bg-gray-800
+`;
 export default function Cart() {
   const calledItems = useSelector((state: any) => state.itemList);
   const docs = calledItems.state;
-  const data: any = useSelector((state: any) => state.cart);
+  const data = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
 
   const [cart, setCart] = useState(data);
@@ -68,9 +91,9 @@ export default function Cart() {
 
   return (
     <>
-      <div className="p-4 bg-white dark:bg-gray-800">
+      <BreadCrumbDiv>
         <BreadCrumb />
-      </div>
+      </BreadCrumbDiv>
       <CartSection>
         <CartItems>
           {cart.length === 0 && <CartEmpty />}
@@ -90,21 +113,18 @@ export default function Cart() {
                   </Link>
                   <ItemInfo>
                     <Link to={`/${item.id}`}>
-                      <h2 className="text-xl text-black dark:text-gray-400 font-semibold hover:underline underline-offset-2">
-                        {item.title}
-                      </h2>
+                      <ItemTitle>{item.title}</ItemTitle>
                     </Link>
-                    <p className="text-3xl my-4 text-black dark:text-gray-400">
+                    <ItemPrice>
                       ${' '}
                       {(
                         item.price *
                         cart.find((product: product) => product.id === item.id)
                           .count
                       ).toFixed(2)}
-                    </p>
+                    </ItemPrice>
                     <div>
-                      <button
-                        className="bg-violet-700 rounded-l-lg px-4 h-12 text-white font-semibold hover:bg-violet-800"
+                      <ItemRemoveBtn
                         onClick={() => {
                           if (
                             cart.find(
@@ -125,16 +145,15 @@ export default function Cart() {
                         }}
                       >
                         -
-                      </button>
-                      <span className="mx-4 text-black dark:text-gray-400">
+                      </ItemRemoveBtn>
+                      <ItemCount>
                         {
                           cart.find(
                             (product: product) => product.id === item.id
                           ).count
                         }
-                      </span>
-                      <button
-                        className="bg-violet-700 rounded-r-lg px-4 h-12 text-white font-semibold hover:bg-violet-800"
+                      </ItemCount>
+                      <ItemAddBtn
                         onClick={() => {
                           dispatch({
                             type: 'ADD',
@@ -143,19 +162,16 @@ export default function Cart() {
                         }}
                       >
                         +
-                      </button>
+                      </ItemAddBtn>
                     </div>
                   </ItemInfo>
                 </CartItem>
               ))}
         </CartItems>
-        <div className="flex items-center mt-10 w-72 h-fit">
-          <label
-            className="text-2xl lg:text-xl text-center text-black dark:text-gray-400"
-            htmlFor="buyBtn"
-          >
+        <BuyBtnDiv>
+          <BuyBtnLabel htmlFor="buyBtn">
             총 : ${Number(calculateTotalPrice().toFixed(2))}{' '}
-          </label>
+          </BuyBtnLabel>
           <button
             className="btn-primary ml-5"
             id="buyBtn"
@@ -166,7 +182,7 @@ export default function Cart() {
             {' '}
             구매하기{' '}
           </button>
-        </div>
+        </BuyBtnDiv>
         {popUp && <PopUp state={popUp} func={setPopUp} />}
       </CartSection>
     </>
