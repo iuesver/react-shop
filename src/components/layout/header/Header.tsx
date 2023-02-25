@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import tw from 'tailwind-styled-components';
 import SearchBar from './SearchBar';
 import Menu from './Menu';
+import { headerStyles } from '../../../styles/header/headerStyles';
 import {
   ShoppingBagIcon,
   SunIcon,
@@ -20,28 +20,6 @@ type item = {
   image: string;
   count: number;
 };
-
-const NavBar = tw.nav`
-  w-full h-16 p-2 bg-white dark:bg-gray-900 flex justify-between shadow-lg sticky z-40
-  `;
-const LeftBar = tw.div`
-  flex items-center
-  `;
-const RightBar = tw.div`
-  flex
-  `;
-const HomeBtn = tw.h1`
-  text-black dark:text-white text-lg md:text-base lg:text-xl font-bold px-3 py-1
-  `;
-const NavBtn = tw.div`
-  relative text-black dark:text-white hidden md:block md:text-sm lg:text-base font-semibold p-2 mx-2 hover:bg-gray-200 dark:hover:bg-gray-700 hover:rounded-lg
-  `;
-const MenuBtn = tw.div`
-  relative text-black dark:text-white block md:hidden md:text-sm lg:text-base font-semibold px-1 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 hover:rounded-lg
-  `;
-const CartCount = tw.div`
-  absolute flex justify-center items-center text-white top-2 left-9 w-4 h-4 text-xs border-2 border-red-500 bg-red-500 rounded-full
-  `;
 
 export default function Header() {
   const initialMode = useSelector((state: any) => state.mode);
@@ -78,7 +56,7 @@ export default function Header() {
   }, 0);
   return (
     <>
-      <NavBar>
+      <headerStyles.NavBar>
         {menu && (
           <Menu
             menu={menu}
@@ -87,8 +65,8 @@ export default function Header() {
             setClicked={setClicked}
           />
         )}
-        <LeftBar>
-          <MenuBtn>
+        <headerStyles.LeftBar>
+          <headerStyles.MenuBtn>
             {clicked === false ? (
               <MenuIcon
                 className="w-7 h-7 mx-2"
@@ -106,27 +84,27 @@ export default function Header() {
                 }}
               />
             )}
-          </MenuBtn>
+          </headerStyles.MenuBtn>
           <Link to="/">
-            <HomeBtn>React Shop</HomeBtn>
+            <headerStyles.HomeBtn>React Shop</headerStyles.HomeBtn>
           </Link>
           <Link to="/fashion">
-            <NavBtn>패션</NavBtn>
+            <headerStyles.NavBtn>패션</headerStyles.NavBtn>
           </Link>
           <Link to="/accessory">
-            <NavBtn>악세서리</NavBtn>
+            <headerStyles.NavBtn>악세서리</headerStyles.NavBtn>
           </Link>
           <Link to="/digital">
-            <NavBtn>디지털</NavBtn>
+            <headerStyles.NavBtn>디지털</headerStyles.NavBtn>
           </Link>
-        </LeftBar>
-        <RightBar
+        </headerStyles.LeftBar>
+        <headerStyles.RightBar
           onClick={() => {
             setClicked(false);
             setMenu(false);
           }}
         >
-          <NavBtn
+          <headerStyles.NavBtn
             className="block"
             onClick={() => {
               setTheme(colorTheme);
@@ -138,9 +116,9 @@ export default function Header() {
             ) : (
               <MoonIcon className="w-7 h-7 mx-2" />
             )}
-          </NavBtn>
+          </headerStyles.NavBtn>
           <SearchBar />
-          <NavBtn className="block md:hidden">
+          <headerStyles.NavBtn className="block md:hidden">
             <SearchIcon
               className="w-7 h-7 mx-2"
               onClick={() => {
@@ -154,15 +132,17 @@ export default function Header() {
                 }
               }}
             />
-          </NavBtn>
+          </headerStyles.NavBtn>
           <Link to="/cart">
-            <NavBtn className="block">
+            <headerStyles.NavBtn className="block">
               <ShoppingBagIcon className="w-7 h-7 mx-2" />
-              <CartCount className="blcok">{count}</CartCount>
-            </NavBtn>
+              <headerStyles.CartCount className="blcok">
+                {count}
+              </headerStyles.CartCount>
+            </headerStyles.NavBtn>
           </Link>
-        </RightBar>
-      </NavBar>
+        </headerStyles.RightBar>
+      </headerStyles.NavBar>
       <Outlet />
     </>
   );

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import tw from 'tailwind-styled-components';
+import { searchBarStyles } from '../../../styles/header/headerStyles';
 
 interface autoDatas {
   id: number;
@@ -17,24 +17,7 @@ interface autoDatas {
     count: number;
   };
 }
-const SearchContainer = tw.div`
-flex items-center
-`;
-const Search = tw.input`
-hidden md:block absolute md:static top-16 left-0 w-full md:w-42 h-5/6 px-4 bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded-sm outline-none
-`;
-const AutoCompleteContainer = tw.div`
-absolute w-screen md:w-60 h-auto absolute z-10 top-28 md:top-16 left-0 md:left-auto p-1 bg-white dark:bg-gray-700 shadow-xl
-`;
-const SearchedList = tw.ul`
-w-screen md:w-full h-fit
-`;
-const SearchedItem = tw.li<{ isFocus?: boolean }>`
-p-1 hover:bg-gray-100 dark:hover:bg-gray-600 text-black dark:text-white ${(
-  props: any
-) =>
-  props.isFocus ? 'bg-gray-100 dark:bg-gray-600' : 'bg-white dark:bg-gray-700'}
-`;
+
 export default function SearchBar() {
   const [keyword, setKeyword] = useState<string>('');
   const [keyItems, setKeyItems] = useState<autoDatas[]>([]);
@@ -112,31 +95,31 @@ export default function SearchBar() {
     };
   }, [keyword]);
   return (
-    <SearchContainer>
-      <Search
+    <searchBarStyles.SearchContainer>
+      <searchBarStyles.Search
         value={keyword}
         placeholder="검색"
         onChange={onChangeData}
         onKeyDown={handleKeyArrow}
       />
       {keyItems.length > 0 && keyword && (
-        <AutoCompleteContainer>
-          <SearchedList ref={autoRef}>
+        <searchBarStyles.AutoCompleteContainer>
+          <searchBarStyles.SearchedList ref={autoRef}>
             {keyItems.map((search, idx) => (
               <Link to={`${search.id}`} key={search.title}>
-                <SearchedItem
+                <searchBarStyles.SearchedItem
                   isFocus={index === idx ? true : false}
                   onClick={() => {
                     setKeyword('');
                   }}
                 >
                   {search.title}
-                </SearchedItem>
+                </searchBarStyles.SearchedItem>
               </Link>
             ))}
-          </SearchedList>
-        </AutoCompleteContainer>
+          </searchBarStyles.SearchedList>
+        </searchBarStyles.AutoCompleteContainer>
       )}
-    </SearchContainer>
+    </searchBarStyles.SearchContainer>
   );
 }

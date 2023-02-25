@@ -26,7 +26,14 @@ export const ProductPreview = () => {
     <article className="text-center bg-white dark:bg-gray-800">
       {Object.values(dataObj).map(
         (dataArray: { data: product[]; title: string }) => (
-          <>
+          <article
+            key={
+              Object.values(dataObj).findIndex(
+                (item: { data: product[]; title: string }) =>
+                  item.title === dataArray.title
+              ) + 1
+            }
+          >
             <productStyles.MainTitle>{dataArray.title}</productStyles.MainTitle>
             <productStyles.Article>
               {dataArray.data.map((item: product) => (
@@ -49,7 +56,7 @@ export const ProductPreview = () => {
               ))}
               <br />
             </productStyles.Article>
-          </>
+          </article>
         )
       )}
     </article>
