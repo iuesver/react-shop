@@ -1,19 +1,16 @@
 import ProductsTable from './ProductsTable';
-import tw from 'tailwind-styled-components';
 import BreadCrumb from '../components/navigation/BreadCrumb';
 
-const Title = tw.h1`
-  text-3xl font-bold pb-6 text-center text-black dark:text-white
-  `;
+import { productStyles } from '../styles/product/productStyles';
 
 export default function DigitalPage() {
   return (
-    <div className="min-h-full bg-white dark:bg-gray-800">
-      <div className="p-4">
+    <productStyles.Section>
+      <productStyles.BreadCrumbDiv>
         <BreadCrumb />
-      </div>
-      <Title>디지털</Title>
+      </productStyles.BreadCrumbDiv>
+      <productStyles.Title>디지털</productStyles.Title>
       <ProductsTable category={'digital'} />
-    </div>
+    </productStyles.Section>
   );
 }

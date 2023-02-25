@@ -1,21 +1,16 @@
 import ProductsTable from './ProductsTable';
-import tw from 'tailwind-styled-components';
 import BreadCrumb from '../components/navigation/BreadCrumb';
 
-const Title = tw.h1`
-  text-3xl font-bold pb-6 text-center text-black dark:text-white
-  `;
+import { productStyles } from '../styles/product/productStyles';
 
 export default function FashionPage() {
   return (
-    <div className="min-h-full bg-white dark:bg-gray-800">
-      <div className="p-4">
+    <productStyles.Section>
+      <productStyles.BreadCrumbDiv>
         <BreadCrumb />
-      </div>
-      <Title>패션</Title>
-      <div>
-        <ProductsTable category={'fasion'} />
-      </div>
-    </div>
+      </productStyles.BreadCrumbDiv>
+      <productStyles.Title>패션</productStyles.Title>
+      <ProductsTable category={'fashion'} />
+    </productStyles.Section>
   );
 }

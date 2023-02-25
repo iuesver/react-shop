@@ -43,7 +43,7 @@ const CartCount = tw.div`
   absolute flex justify-center items-center text-white top-2 left-9 w-4 h-4 text-xs border-2 border-red-500 bg-red-500 rounded-full
   `;
 
-export default function Navbar() {
+export default function Header() {
   const initialMode = useSelector((state: any) => state.mode);
   const [theme, setTheme] = useState(initialMode || 'light');
   const [menu, setMenu] = useState(false);

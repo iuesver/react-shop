@@ -1,11 +1,11 @@
-import Index from '../components/Index';
+import Index from '../components/carousel/Index';
 import ProductsTable from './ProductsTable';
 import tw from 'tailwind-styled-components';
 
 const Title = tw.h1`
   text-3xl font-bold p-6 text-black dark:text-white
   `;
-export default function MainPage() {
+export const MainPage = () => {
   return (
     <div>
       <div id="container" className="w-full">
@@ -13,7 +13,7 @@ export default function MainPage() {
         <div className="text-center bg-white dark:bg-gray-800">
           <Title>패션</Title>
           <div>
-            <ProductsTable category="main" catego="fasion" />
+            <ProductsTable category="main" catego="fashion" />
           </div>
           <br />
           <Title>악세서리</Title>
@@ -30,4 +30,4 @@ export default function MainPage() {
       </div>
     </div>
   );
-}
+};

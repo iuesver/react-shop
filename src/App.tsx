@@ -4,7 +4,7 @@ import * as act from './actions';
 import axios from 'axios';
 import useSWR from 'swr';
 
-import Navbar from './components/navigation/Navbar';
+import Header from './components/layout/header/Header';
 import MainPage from './pages/MainPage';
 import FashionPage from './pages/FashionPage';
 import AccessoryPage from './pages/AccessoryPage';
@@ -12,7 +12,7 @@ import DigitalPage from './pages/DigitalPage';
 import ProductDescription from './pages/ProductDescription';
 import Cart from './pages/cart/Cart';
 import Skel from './Skel';
-import Footer from './components/Footer';
+import Footer from './components/layout/Footer';
 import ScrollToTop from './components/function/ScrollToTop';
 
 export const router = createBrowserRouter([
@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
     path: '/',
     element: (
       <>
-        <Navbar />
+        <Header />
         <Footer />
       </>
     ),

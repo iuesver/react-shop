@@ -37,4 +37,7 @@ flex items-center mt-10 w-72 h-fit
   BreadCrumbDiv: tw.div`
     p-4 bg-white dark:bg-gray-800
 `,
+  EmptyTitle: tw.h1`
+text-2xl text-black dark:text-gray-400
+`,
 };

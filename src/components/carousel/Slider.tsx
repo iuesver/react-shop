@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import tw from 'tailwind-styled-components';
-import useInterval from '../hooks/useInterval';
+import useInterval from '../../hooks/useInterval';
 import { PlayIcon, PauseIcon } from '@heroicons/react/outline';
 
 interface IImage {

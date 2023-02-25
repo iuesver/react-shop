@@ -1,7 +1,7 @@
 import Slider from './Slider';
-import digitalImg from '../assets/images/digital.jpg';
-import shopImg from '../assets/images/shop.jpeg';
-import jeanImg from '../assets/images/jeans.jpeg';
+import digitalImg from '../../assets/images/digital.jpg';
+import shopImg from '../../assets/images/shop.jpeg';
+import jeanImg from '../../assets/images/jeans.jpeg';
 
 const Index = () => {
   return (

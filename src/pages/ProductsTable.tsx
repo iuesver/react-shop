@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { productStyles } from '../styles/product/productStyles';
 
 export default function ProductsTable(props: any) {
   const { category, catego } = props;
@@ -9,7 +10,7 @@ export default function ProductsTable(props: any) {
   const itemList = calledItems.state;
 
   function filtering(categ: string, categ1: string) {
-    if (categ === 'fasion') {
+    if (categ === 'fashion') {
       return itemList.filter(
         (item: any) =>
           item.category === "men's clothing" ||
@@ -20,7 +21,7 @@ export default function ProductsTable(props: any) {
     } else if (categ === 'digital') {
       return itemList.filter((item: any) => item.category === 'electronics');
     } else if (categ === 'main') {
-      if (categ1 === 'fasion') {
+      if (categ1 === 'fashion') {
         return itemList
           .filter(
             (item: any) =>
@@ -40,20 +41,20 @@ export default function ProductsTable(props: any) {
     } else return itemList;
   }
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-4 px-2 pb-20">
+    <productStyles.Article>
       {filtering(category, catego).map((doc: any) => (
-        <div key={doc.id} className="m-4 border dark:border-none rounded-lg">
+        <productStyles.ProductDiv key={doc.id}>
           <Link to={`/${doc.id}`}>
-            <figure className="h-80 bg-white flex justify-center items-center rounded-t-lg">
-              <img src={doc.image} className="img-primary" alt={doc.title} />
-            </figure>
-            <div className="h-36 text-black dark:text-gray-400 bg-gray-200 dark:bg-gray-700 flex flex-col p-4 justify-between items-start dark:rounded-b-lg overflow-auto">
+            <productStyles.ProductFigure>
+              <productStyles.ProductImg src={doc.image} alt={doc.title} />
+            </productStyles.ProductFigure>
+            <productStyles.ProductIntro>
               <span className="text-start font-semibold">{doc.title}</span>
               <span className="font-semibold">${doc.price}</span>
-            </div>
+            </productStyles.ProductIntro>
           </Link>
-        </div>
+        </productStyles.ProductDiv>
       ))}
-    </div>
+    </productStyles.Article>
   );
 }

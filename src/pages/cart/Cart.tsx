@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartEmpty from './CartEmpty';
-import PopUp from '../../components/PopUp';
+import PopUp from '../../components/navigation/PopUp';
 import { cartStyle } from '../../styles/cart/cartStyles';
 
 import BreadCrumb from '../../components/navigation/BreadCrumb';
