@@ -1,48 +1,17 @@
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { productStyles } from '../styles/product/productStyles';
+import { filterData } from '../components/function/public/filterData';
+import { product } from '../components/types/productType';
+import { RootState } from '../reducers/combReducer';
 
-export default function ProductsTable(props: any) {
-  const { category, catego } = props;
+export default function ProductsTable() {
+  const location = useLocation();
+  const data = useSelector((state: RootState) => state.itemList).state;
 
-  const calledItems = useSelector((state: any) => state.itemList);
-  console.log(calledItems);
-  const itemList = calledItems.state;
-
-  function filtering(categ: string, categ1: string) {
-    if (categ === 'fashion') {
-      return itemList.filter(
-        (item: any) =>
-          item.category === "men's clothing" ||
-          item.category === "women's clothing"
-      );
-    } else if (categ === 'accessory') {
-      return itemList.filter((item: any) => item.category === 'jewelery');
-    } else if (categ === 'digital') {
-      return itemList.filter((item: any) => item.category === 'electronics');
-    } else if (categ === 'main') {
-      if (categ1 === 'fashion') {
-        return itemList
-          .filter(
-            (item: any) =>
-              item.category === "men's clothing" ||
-              item.category === "women's clothing"
-          )
-          .slice(0, 4);
-      } else if (categ1 === 'accessory') {
-        return itemList
-          .filter((item: any) => item.category === 'jewelery')
-          .slice(0, 4);
-      } else if (categ1 === 'digital') {
-        return itemList
-          .filter((item: any) => item.category === 'electronics')
-          .slice(0, 4);
-      } else return itemList;
-    } else return itemList;
-  }
   return (
     <productStyles.Article>
-      {filtering(category, catego).map((doc: any) => (
+      {filterData(data, location.pathname).map((doc: product) => (
         <productStyles.ProductDiv key={doc.id}>
           <Link to={`/${doc.id}`}>
             <productStyles.ProductFigure>

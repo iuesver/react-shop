@@ -16,4 +16,6 @@ const reducers = combineReducers({
   mode: modeReducer,
 });
 
+export type RootState = ReturnType<typeof reducers>;
+
 export default persistReducer(persistConfig, reducers);

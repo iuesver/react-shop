@@ -10,7 +10,7 @@ export default function FashionPage() {
         <BreadCrumb />
       </productStyles.BreadCrumbDiv>
       <productStyles.Title>패션</productStyles.Title>
-      <ProductsTable category={'fashion'} />
+      <ProductsTable />
     </productStyles.Section>
   );
 }

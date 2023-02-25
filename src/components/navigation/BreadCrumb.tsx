@@ -16,19 +16,14 @@ export default function BreadCrumb(props: {
     switch (name) {
       case '/fashion':
         return '패션';
-        break;
       case '/accessory':
         return '악세서리';
-        break;
       case '/digital':
         return '디지털';
-        break;
       case '/cart':
         return '장바구니';
-        break;
       default:
         return '홈';
-        break;
     }
   };
 
@@ -36,16 +31,12 @@ export default function BreadCrumb(props: {
     switch (name) {
       case "men's clothing":
         return '패션';
-        break;
       case "women's clothing":
         return '패션';
-        break;
       case 'jewelery':
         return '악세서리';
-        break;
       case 'electronics':
         return '디지털';
-        break;
       default:
         break;
     }

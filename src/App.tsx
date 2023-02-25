@@ -1,11 +1,11 @@
 import { Outlet, createBrowserRouter } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as act from './actions';
 import axios from 'axios';
 import useSWR from 'swr';
 
 import Header from './components/layout/header/Header';
-import MainPage from './pages/MainPage';
+import { MainPage } from './pages/MainPage';
 import FashionPage from './pages/FashionPage';
 import AccessoryPage from './pages/AccessoryPage';
 import DigitalPage from './pages/DigitalPage';
@@ -13,7 +13,10 @@ import ProductDescription from './pages/ProductDescription';
 import Cart from './pages/cart/Cart';
 import Skel from './Skel';
 import Footer from './components/layout/Footer';
-import ScrollToTop from './components/function/ScrollToTop';
+import ScrollToTop from './components/function/public/ScrollToTop';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router';
+import { RootState } from './reducers/combReducer';
 
 export const router = createBrowserRouter([
   {
@@ -50,28 +53,37 @@ export const router = createBrowserRouter([
   },
 ]);
 
-function App() {
+const App = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
-  const apapap = window.location.pathname;
-  const productListApi = 'https://fakestoreapi.com/products';
-  async function fetcher(url: string) {
-    const result = await axios.get(url);
+  const stateData = useSelector((state: RootState) => state.itemList);
 
-    return result.data;
-  }
-  const { data: docs, error } = useSWR('post', () => fetcher(productListApi));
+  const API_URL = 'https://fakestoreapi.com/products';
+  const fetcher = async (url: string) => {
+    try {
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const { data, error } = useSWR('post', () => fetcher(API_URL));
+
+  useEffect(() => {
+    if (!stateData) {
+      dispatch(act.callapi(data));
+    }
+  }, []);
 
   if (error) return <div>failed to load</div>;
-  if (!docs) return <Skel path={apapap} />;
-  dispatch(act.callapi(docs));
-
-  const something = dispatch(act.callapi(docs));
+  if (!stateData) return <Skel path={location.pathname} />;
 
   return (
     <ScrollToTop>
       <Outlet />
     </ScrollToTop>
   );
-}
+};
 
 export default App;

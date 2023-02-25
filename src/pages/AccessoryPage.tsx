@@ -10,7 +10,7 @@ export default function AccessoryPage() {
         <BreadCrumb />
       </productStyles.BreadCrumbDiv>
       <productStyles.Title>악세서리</productStyles.Title>
-      <ProductsTable category={'accessory'} />
+      <ProductsTable />
     </productStyles.Section>
   );
 }

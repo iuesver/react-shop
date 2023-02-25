@@ -10,7 +10,7 @@ export default function DigitalPage() {
         <BreadCrumb />
       </productStyles.BreadCrumbDiv>
       <productStyles.Title>디지털</productStyles.Title>
-      <ProductsTable category={'digital'} />
+      <ProductsTable />
     </productStyles.Section>
   );
 }
