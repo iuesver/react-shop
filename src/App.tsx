@@ -1,19 +1,54 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Outlet, createBrowserRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as act from './actions';
 import axios from 'axios';
 import useSWR from 'swr';
 
 import Navbar from './components/navigation/Navbar';
-import MainPage from './components/MainPage';
-import FashionPage from './components/productShow/FashionPage';
-import AccessoryPage from './components/productShow/AccessoryPage';
-import DigitalPage from './components/productShow/DigitalPage';
-import ProductDescription from './components/productShow/ProductDescription';
-import Cart from './components/Cart';
+import MainPage from './pages/MainPage';
+import FashionPage from './pages/FashionPage';
+import AccessoryPage from './pages/AccessoryPage';
+import DigitalPage from './pages/DigitalPage';
+import ProductDescription from './pages/ProductDescription';
+import Cart from './pages/cart/Cart';
 import Skel from './Skel';
 import Footer from './components/Footer';
 import ScrollToTop from './components/function/ScrollToTop';
+
+export const router = createBrowserRouter([
+  {
+    path: '/',
+    element: (
+      <>
+        <Navbar />
+        <Footer />
+      </>
+    ),
+    children: [
+      { path: '/', element: <MainPage /> },
+      {
+        path: '/fashion',
+        element: <FashionPage />,
+      },
+      {
+        path: '/accessory',
+        element: <AccessoryPage />,
+      },
+      {
+        path: '/digital',
+        element: <DigitalPage />,
+      },
+      {
+        path: '/:id',
+        element: <ProductDescription />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
+      },
+    ],
+  },
+]);
 
 function App() {
   const dispatch = useDispatch();
@@ -33,21 +68,9 @@ function App() {
   const something = dispatch(act.callapi(docs));
 
   return (
-    <BrowserRouter>
-      <ScrollToTop>
-        <Routes>
-          <Route path="/" element={<Navbar />}>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/fashion" element={<FashionPage />} />
-            <Route path="/accessory" element={<AccessoryPage />} />
-            <Route path="/digital" element={<DigitalPage />} />
-            <Route path="/:docId" element={<ProductDescription />} />
-            <Route path="/cart" element={<Cart />} />
-          </Route>
-        </Routes>
-        <Footer />
-      </ScrollToTop>
-    </BrowserRouter>
+    <ScrollToTop>
+      <Outlet />
+    </ScrollToTop>
   );
 }
 

@@ -1,5 +1,5 @@
-import Index from './Index';
-import ProductsTable from './productShow/ProductsTable';
+import Index from '../components/Index';
+import ProductsTable from './ProductsTable';
 import tw from 'tailwind-styled-components';
 
 const Title = tw.h1`

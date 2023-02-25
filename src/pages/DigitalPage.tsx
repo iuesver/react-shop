@@ -1,6 +1,6 @@
 import ProductsTable from './ProductsTable';
 import tw from 'tailwind-styled-components';
-import BreadCrumb from '../navigation/BreadCrumb';
+import BreadCrumb from '../components/navigation/BreadCrumb';
 
 const Title = tw.h1`
   text-3xl font-bold pb-6 text-center text-black dark:text-white

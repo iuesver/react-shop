@@ -3,7 +3,7 @@ import tw from 'tailwind-styled-components';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import BreadCrumb from '../navigation/BreadCrumb';
+import BreadCrumb from '../components/navigation/BreadCrumb';
 
 export default function ProductDescription() {
   const params = useParams();
