@@ -1,4 +1,4 @@
-import ProductsTable from './ProductsTable';
+import ProductsTable from '../components/layout/main/ProductsTable';
 import BreadCrumb from '../components/navigation/BreadCrumb';
 
 import { productStyles } from '../styles/product/productStyles';

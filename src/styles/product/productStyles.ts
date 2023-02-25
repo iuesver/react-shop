@@ -7,6 +7,9 @@ export const productStyles = {
   Article: tw.article`
     grid md:grid-cols-2 lg:grid-cols-4 px-2 pb-20
     `,
+  MainTitle: tw.h1`
+text-3xl font-bold p-6 text-black dark:text-white
+`,
   Title: tw.h1`
   text-3xl font-bold pb-6 text-center text-black dark:text-white
   `,

@@ -9,7 +9,7 @@ import { MainPage } from './pages/MainPage';
 import FashionPage from './pages/FashionPage';
 import AccessoryPage from './pages/AccessoryPage';
 import DigitalPage from './pages/DigitalPage';
-import ProductDescription from './pages/ProductDescription';
+import ProductDescription from './components/layout/main/ProductDescription';
 import Cart from './pages/cart/Cart';
 import Skel from './Skel';
 import Footer from './components/layout/Footer';

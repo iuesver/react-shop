@@ -2,67 +2,53 @@ import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import BreadCrumb from '../components/navigation/BreadCrumb';
-
-import { productDescStyles } from '../styles/product/productDescStyles';
-import { useEffect } from 'react';
+import BreadCrumb from '../../navigation/BreadCrumb';
+import { productDescStyles } from '../../../styles/product/productDescStyles';
+import { useEffect, useState } from 'react';
+import { product } from '../../types/productType';
+import { RootState } from '../../../reducers/combReducer';
 
 export default function ProductDescription() {
+  const [info, setInfo] = useState<product | null>(null);
   const params = useParams();
-  const dispatch = useDispatch();
-  const calledItems = useSelector((state: any) => state.itemList);
 
-  let selectedItem = calledItems.state[Number(params.docId) - 1];
-  let firstLocation = '';
-  if (
-    selectedItem.category === "men's clothing" ||
-    selectedItem.category === "women's clothing"
-  ) {
-    firstLocation = '패션';
-  } else if (selectedItem.category === 'jewelery') {
-    firstLocation = '악세서리';
-  } else if (selectedItem.category === 'electronics') {
-    firstLocation = '디지털';
-  } else firstLocation = '메인';
+  const dispatch = useDispatch();
+  const data = useSelector((state: RootState) => state.itemList).state;
 
   useEffect(() => {
-    console.log(params);
+    setInfo(data.find((item: product) => item.id === Number(params.id)));
   }, []);
+
+  if (info === null) return <div>failed to load</div>;
 
   return (
     <section>
       <productDescStyles.BreadCrumbDiv>
-        <BreadCrumb
-          category={selectedItem.category}
-          title={selectedItem.title}
-        />
+        <BreadCrumb category={info.category} title={info.title} />
       </productDescStyles.BreadCrumbDiv>
       <productDescStyles.Product key={params.docId}>
         <productDescStyles.ProductFigure>
-          <productDescStyles.ProductImg
-            src={selectedItem.image}
-            alt={selectedItem.title}
-          />
+          <productDescStyles.ProductImg src={info.image} alt={info.title} />
         </productDescStyles.ProductFigure>
         <productDescStyles.ProductDescDiv>
           <productDescStyles.ProductTitle>
-            {selectedItem.title}
+            {info.title}
           </productDescStyles.ProductTitle>
           <productDescStyles.ProductDesc>
-            {selectedItem.description}
+            {info.description}
           </productDescStyles.ProductDesc>
           <productDescStyles.ProductRating>
-            {selectedItem.rating.rate}/{selectedItem.rating.count}
+            {info.rating.rate}/{info.rating.count}
           </productDescStyles.ProductRating>
           <productDescStyles.ProductPrice>
-            ${selectedItem.price}
+            ${info.price}
           </productDescStyles.ProductPrice>
           <productDescStyles.ProductBtnDiv>
             <productDescStyles.ProductAddBtn
               onClick={() =>
                 dispatch({
                   type: 'ADD',
-                  payload: { id: selectedItem.id, count: 1 },
+                  payload: { id: info.id, count: 1 },
                 })
               }
             >
