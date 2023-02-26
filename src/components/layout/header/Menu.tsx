@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import { menuStyles } from '../../../styles/header/headerStyles';
 
-export default function Menu(props: any) {
+export default function Menu(props: {
+  menu: boolean;
+  clicked: boolean;
+  setMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  setClicked: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   return (
     <menuStyles.MenuDiv
       onClick={() => {

@@ -1,9 +1,8 @@
 import tw from 'tailwind-styled-components';
 import Skel_Item from './Skel_Item';
 
-export default function Skel(props: any) {
+export default function Skel(props: { path: string }) {
   const { path } = props;
-  console.log(path);
 
   const NavBar = tw.nav`
   w-full h-16 p-2 bg-gray-500 dark:bg-gray-900 flex justify-between shadow-lg sticky z-40
@@ -34,12 +33,12 @@ export default function Skel(props: any) {
         </div>
       </div>
     );
-  } else if (path == '/fasion' || path == '/accessory' || path == '/digital') {
+  } else if (path == '/fashion' || path == '/accessory' || path == '/digital') {
     const Title = tw.h1`
     text-3xl font-bold pb-6 text-center text-black dark:text-white
     `;
     let title = '';
-    if (path == '/fasion') {
+    if (path == '/fashion') {
       title = '패션';
     } else if (path == '/accessory') {
       title = '악세서리';
@@ -81,7 +80,7 @@ export default function Skel(props: any) {
   } else
     return (
       <div>
-        <Skel_Item cartonly={path} />
+        <Skel_Item skelForm={path} />
       </div>
     );
 }

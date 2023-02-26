@@ -6,6 +6,7 @@ import PopUp from '../../components/navigation/PopUp';
 import { cartStyle } from '../../styles/cart/cartStyles';
 
 import BreadCrumb from '../../components/navigation/BreadCrumb';
+import { RootState } from '../../reducers/combReducer';
 
 type item = {
   category: string;
@@ -23,7 +24,7 @@ type product = {
   count: number;
 };
 export default function Cart() {
-  const calledItems = useSelector((state: any) => state.itemList);
+  const calledItems = useSelector((state: RootState) => state.itemList);
   const docs = calledItems.state;
   const data = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();

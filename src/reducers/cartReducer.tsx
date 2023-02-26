@@ -1,31 +1,14 @@
-interface action {
-  type: string;
-  payload: {
-    id: number;
-    title: string;
-    price: number;
-    image: string;
-    count: number;
-  };
-}
+import { cartAction, cartItem } from '../components/types/reducerType';
 
-interface item {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-  count: number;
-}
+const initState: cartItem[] = [];
 
-const initState: item[] = [];
-
-const cartReducer = (state = initState, action: action) => {
-  let newState: item[] = [...state];
+const cartReducer = (state = initState, action: cartAction) => {
+  let newState: cartItem[] = [...state];
   switch (action.type) {
     case 'ADD':
-      if (newState.find((item: item) => item.id === action.payload.id)) {
+      if (newState.find((item: cartItem) => item.id === action.payload.id)) {
         const idx = newState.findIndex(
-          (item: item) => item.id === action.payload.id
+          (item: cartItem) => item.id === action.payload.id
         );
         newState[idx].count += 1;
       } else {
@@ -34,7 +17,7 @@ const cartReducer = (state = initState, action: action) => {
       return newState;
     case 'REMOVE':
       const idx = newState.findIndex(
-        (item: item) => item.id === action.payload.id
+        (item: cartItem) => item.id === action.payload.id
       );
       if (newState[idx].count === 1) {
         newState = newState.filter((item) => item.id !== newState[idx].id);

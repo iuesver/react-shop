@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { RootState } from '../../../reducers/combReducer';
 import { searchBarStyles } from '../../../styles/header/headerStyles';
 
 interface autoDatas {
@@ -64,7 +65,7 @@ export default function SearchBar() {
     }
   };
 
-  const calledItems = useSelector((state: any) => state.itemList);
+  const calledItems = useSelector((state: RootState) => state.itemList);
   let itemList = calledItems.state;
 
   interface ICity {

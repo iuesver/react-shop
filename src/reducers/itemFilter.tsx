@@ -1,10 +1,10 @@
+import { item, readAction } from '../components/types/reducerType';
+
 const initialState: any = [];
 
 export default function itemFilter(state = initialState, action: any) {
   switch (action.type) {
     case 'CALL_API':
-      console.log(action);
-
       return {
         state: [...action.originaldata],
       };

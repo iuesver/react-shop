@@ -1,8 +1,8 @@
 import React from 'react';
 import tw from 'tailwind-styled-components';
 
-export default function Skel_Item(props: any) {
-  const { skelForm } = props;
+export default function Skel_Item(props: { skelForm: string }) {
+  const skelForm = props;
   const sample = [1, 2, 3, 4];
   const Product = tw.div`
   flex flex-col min-h-screen lg:flex-row px-10 pt-16 bg-white dark:bg-gray-800
@@ -20,7 +20,7 @@ export default function Skel_Item(props: any) {
   flex flex-col justify-evenly ml-4 pb-1 lg:px-12
   `;
 
-  if (Number(parseInt(skelForm.split('').splice(1).join('')))) {
+  if (Number(parseInt(skelForm.skelForm.split('').splice(1).join('')))) {
     return (
       <Product>
         <figure className="w-full h-80 lg:w-96 bg-slate-200 p-4 pb-4 lg:mb-0 rounded-2xl"></figure>
@@ -38,7 +38,7 @@ export default function Skel_Item(props: any) {
         </div>
       </Product>
     );
-  } else if (skelForm == '/cart') {
+  } else if (skelForm.skelForm == '/cart') {
     return (
       <Cart>
         <CartItems>

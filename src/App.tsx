@@ -17,6 +17,7 @@ import ScrollToTop from './components/function/public/ScrollToTop';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { RootState } from './reducers/combReducer';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,13 @@ export const router = createBrowserRouter([
     element: (
       <>
         <Header />
+        <Footer />
+      </>
+    ),
+    errorElement: (
+      <>
+        <Header />
+        <NotFoundPage />
         <Footer />
       </>
     ),

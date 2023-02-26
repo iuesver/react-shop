@@ -12,6 +12,7 @@ import {
   MenuIcon,
   XIcon,
 } from '@heroicons/react/outline';
+import { RootState } from '../../../reducers/combReducer';
 
 type item = {
   id: number;
@@ -22,7 +23,7 @@ type item = {
 };
 
 export default function Header() {
-  const initialMode = useSelector((state: any) => state.mode);
+  const initialMode = useSelector((state: RootState) => state.mode);
   const [theme, setTheme] = useState(initialMode || 'light');
   const [menu, setMenu] = useState(false);
   const [clicked, setClicked] = useState(false);
@@ -48,7 +49,7 @@ export default function Header() {
     };
   }, [width]);
 
-  const condition: item[] = useSelector((state: any) => state.cart);
+  const condition: item[] = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
   const count = condition.reduce((acc: number, cur: item) => {
     acc += cur.count;
