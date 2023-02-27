@@ -1,29 +1,83 @@
 # React-Shop
 
+## 프로젝트 개요
+
+본 프로젝트는 React와 Typescript를 사용해 상용화 될만한 웹페이지를 UI/UX에 중점을 두어 제작한 3명으로 구성된 FE 개발자팀의 팀 프로젝트입니다.
+
 ## 작업 분배
 
-1. 메인페이지 슬라이더 및 리스트 (조영호님)
-2. 각 상품 페이지 및 상세페이지 + 검색 기능 (김우진님)
-3. 전체 테마 변경하는 부분과 스켈레톤 UI 등 (손용찬님)
-4. 로그인 페이지 (강인웅님)
-5. 상품 카트 관리하는 부분 (오혁상님)
+1. 각 상품 페이지 및 상세페이지 + 검색 기능 + 스켈레톤 UI (김우진님)
+2. 메인페이지 슬라이더 및 리스트 + 로그인 페이지 (강인웅님)
+3. 상품 장바구니 + 다크 모드 + 반응형 디자인 (오혁상님)
 
-## 사용예정 스택
+## 디렉토리 구조
 
-- CRA vs Vite -> Vite
-- React with Typescript
-- 상태관리 라이브러리 : Recoil vs Redux -> Redux
-- CSS : StyledComponenet + TailwindCSS
+```
+/src
+├── actions     // 비동기 통신 처리 코드
+├── assets      // 프로젝트에 필요한 이미지 파일 저장
+├── components  // 프로젝트의 컴포넌트
+│   ├── carousel
+│   ├── function      // 컴포넌트 내에 활용될 함수
+│   ├── layout        // 공용 페이지 레이아웃
+│   ├── navigation
+│   └── types
+├── hooks       // custom hook
+├── pages       // 라우팅 처리할 페이지
+├── reducers    // redux
+├── styles      // 스타일링 관련 코드 집합
+│   ├── cart
+│   ├── header
+│   ├── modal
+│   └── product
+├── App.tsx
+├── index.css
+└── main.tsx
+```
+
+## 설치 방법
+
+```
+npm install -> npm run dev
+```
+
+## 기술 스택
+
+| 기술명                          | 사용처          | 사용 이유                                                                                                                                   |
+| ------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Vite                            | 프로젝트 생성   | CRA와 비교해 확연히 체감되는 서버 구동 시간                                                                                                 |
+| TypeSciprt                      | 프로그래밍 언어 | 타입 선언으로 인한 코드 가독성 향상 및 자바스크립트의 타입 추론에 대한 불확실성을 보완                                                      |
+| TailwindCSS + Styled-components | 스타일링        | TailwindCSS의 단순화된 스타일링 코드 작성법<br/>styled-components로 사용함으로써 기능, JSX와 스타일 관련 코드를 분리함으로 코드 가독성 향상 |
+| Redux                           | 상태관리        | 타 상태관리 라이브러리에 비해 역사와 커뮤니티, 사용량이 풍부함으로 오는 다양한 정보와 전역 상태관리의 편리성                                |
+| Axios + SWR                     | 비동기 통신     | 간편한 비동기 통신 관련 코드 사용법과 SWR의 캐싱 처리에서 오는 이점 활용                                                                    |
 
 ## 이용하는 협업툴
 
 - Gather Town
 - Slack
 - Github
+- Sourcetree
 
 ## Convention
 
 ### Prettier
+
+```
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "quoteProps": "as-needed",
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "embeddedLanguageFormatting": "auto"
+}
+```
 
 ### Git Convention
 
