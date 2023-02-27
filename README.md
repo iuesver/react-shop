@@ -4,6 +4,16 @@
 
 본 프로젝트는 React와 Typescript를 사용해 상용화 될만한 웹페이지를 UI/UX에 중점을 두어 제작한 3명으로 구성된 FE 개발자팀의 팀 프로젝트입니다.
 
+### 프로젝트 링크
+
+[배포된 사이트 바로가기](https://react-shop-peach.vercel.app/)
+
+### 설치 방법
+
+```
+npm install -> npm run dev
+```
+
 ## 작업 분배
 
 1. 각 상품 페이지 및 상세페이지 + 검색 기능 + 스켈레톤 UI (김우진님)
@@ -33,12 +43,6 @@
 ├── App.tsx
 ├── index.css
 └── main.tsx
-```
-
-## 설치 방법
-
-```
-npm install -> npm run dev
 ```
 
 ## 기술 스택
